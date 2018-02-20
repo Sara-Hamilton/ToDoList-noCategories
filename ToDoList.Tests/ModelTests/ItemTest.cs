@@ -1,17 +1,18 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using ToDoList;
+using ToDoList.Models;
 
 namespace ToDoList.Tests
 {
   [TestClass]
-  public class ItemTest : IDisposable
+  // public class ItemTest : IDisposable
+  public class ItemTest
   {
-      public void Dispose()
-      {
-        Item.ClearAll();
-      }
+      // public void Dispose()
+      // {
+      //   Item.ClearAll();
+      // }
         [TestMethod]
         public void GetDescription_ReturnsDescription_String()
         {

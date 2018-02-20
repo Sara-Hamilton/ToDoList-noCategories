@@ -6,13 +6,27 @@ using ToDoList.Models;
 namespace ToDoList.Tests
 {
   [TestClass]
-  // public class ItemTest : IDisposable
-  public class ItemTest
+  public class ItemTest : IDisposable
   {
-      // public void Dispose()
-      // {
-      //   Item.ClearAll();
-      // }
+      public void Dispose()
+      {
+        Item.DeleteAll();
+      }
+      public void ItemTests()
+      {
+        DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=todo_test;";
+      }
+
+      [TestMethod]
+        public void GetAll_DatabaseEmptyAtFirst_0()
+        {
+          //Arrange, Act
+          int result = Item.GetAll().Count;
+
+          //Assert
+          Assert.AreEqual(0, result);
+        }
+
         [TestMethod]
         public void GetDescription_ReturnsDescription_String()
         {
@@ -27,7 +41,7 @@ namespace ToDoList.Tests
           Assert.AreEqual(description, result);
         }
 
-        [TestMethod]
+        [TestMethod] //this test does not pass since the database was added
         public void GetAll_ReturnsItems_ItemList()
         {
           //Arrange
@@ -46,6 +60,19 @@ namespace ToDoList.Tests
 
           //Assert
           CollectionAssert.AreEqual(newList, result);
+        }
+
+        [TestMethod]
+        public void Save_SavesToDatabase_ItemList()
+        {
+          //Arrange
+          Item testItem = new Item("Mow the lawn");
+
+          //Act
+          int result = Item.GetAll().Count;
+
+          //Assert
+          Assert.AreEqual(0, result);
         }
       }
     }

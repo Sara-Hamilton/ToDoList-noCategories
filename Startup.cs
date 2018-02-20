@@ -6,6 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ToDoList
 {
+  public static class DBConfiguration
+    {
+        public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=todo;";
+    }
+    
   public class Startup
   {
     public Startup(IHostingEnvironment env)
@@ -37,5 +42,6 @@ namespace ToDoList
         await context.Response.WriteAsync("Hello World!");
       });
     }
+
   }
 }

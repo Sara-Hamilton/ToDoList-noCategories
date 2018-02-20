@@ -24,7 +24,7 @@ namespace ToDoList.Controllers
         public ActionResult Create()
         {
           Item newItem = new Item (Request.Form["new-item"]);
-          // newItem.Save();
+          newItem.Save();
           List<Item> allItems = Item.GetAll();
           return View("Index", allItems);
         }
@@ -32,7 +32,7 @@ namespace ToDoList.Controllers
         [HttpPost("/items/delete")]
         public ActionResult DeleteAll()
         {
-            // Item.ClearAll();
+            Item.DeleteAll();
             return View();
         }
 
